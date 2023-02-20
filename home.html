@@ -1,13 +1,44 @@
 <script type="text/javascript">
-  var pageName=document.URL.split("/")[4].split(".")[0];
+  function getParameterByName(name, url = window.location.href) {1
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+var pageName=document.URL.split("/")[document.URL.split("/").length-1].split(".")[0];
+var pageUrl=location.pathname.split(".")[0];
+var userId="Anonymous";
+var loggedInStatus="Anonymous";
+if(document.URL.indexOf("userId")>-1)
+{
+  userId=getParameterByName('userId');
+   loggedInStatus="Logged-in" ;
+      }
+var loggedInStatus="Anonymous" 
   window.digitalData={
     page:
     {
       pageInfo:
       {
-        pageName:pageName
+        pageName:pageName,
+        pageUrl:pageUrl,
+        server:"subiraj.rs.github.io"
       }
-    }
+    },
+      user:
+          
+  [
+      
+      {
+          attributes:{
+          userId:userId,
+          loggedInStatus:loggedInStatus
+      }
+      }
+      ]
+          
   }
   
 </script>
